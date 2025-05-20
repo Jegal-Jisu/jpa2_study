@@ -54,18 +54,6 @@ public class OrderSimpleApiController {
         return result;
     }
 
-    @GetMapping("/api/v3.1/simple-orders")
-    public List<SimpleOrderDto> ordersV3_page(@RequestParam(value = "offset", defaultValue = "0") int offset,
-                                              @RequestParam(value = "limit", defaultValue = "100")int limit) {
-        List<Order> orders = orderRepository.findAllWithMemberDelivery(offset, limit);
-
-        List<SimpleOrderDto> result = orders.stream()
-                .map(o -> new SimpleOrderDto(o))
-                .collect(Collectors.toList());
-
-        return result;
-    }
-
     // commit test
     @GetMapping("/api/v4/simple-orders")
     public List<OrderSimpleQueryDto> ordersV4() {
